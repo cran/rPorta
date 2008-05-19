@@ -1,0 +1,9 @@
+useDynLib(rPorta,rConeReductionINT,rPortaInterface)
+import(methods)
+
+exportClasses("poi", "poiFile","ieq","ieqFile","paramspacerestriction","portaFile")
+exportMethods("convertToString","getNumerator","getDenominator","index","getFeasiblePoints",
+			  "getUnfeasiblePoints","writeToFile","traf","portsort","fmel","vint","iespo","posie","fctp")
+
+#export everything except for functions beginning with .
+exportPattern("^[^\\.]")
