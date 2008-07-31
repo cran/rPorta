@@ -5,7 +5,7 @@
  * 
  * This file is a modification of the original file distributed with
  * PORTA (http://www.zib.de/Optimization/Software/Porta/).
- * Last modification: $Date: 2008/05/15 14:33:51 $
+ * Last modification: $Date: 2008/08/06 11:46:39 $
  */
 
 /*******************************************************************************

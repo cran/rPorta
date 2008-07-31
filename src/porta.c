@@ -5,7 +5,7 @@
  * 
  * This file is a modification of the original file distributed with
  * PORTA (http://www.zib.de/Optimization/Software/Porta/).
- * Last modification: $Date: 2008/05/15 14:33:51 $
+ * Last modification: $Date: 2008/08/06 11:46:39 $
  */
 
 /*******************************************************************************
@@ -54,9 +54,9 @@ FILE *logfile;
 
 
 
-//#define DEBUG_TRACE_MY_PORTA 
+// #define DEBUG_TRACE_MY_PORTA 
 
-//#define _DEBUG          
+// #define _DEBUG          
 
 
 
@@ -1581,19 +1581,20 @@ RAT * testPorta(RAT * ppoints, int punktAnz, int punktDim,int * pnoOfIneq){
 				printf("Schleifen durchlauf: (%i,%i);",i,j);
 				#endif
 				//printf("Schleifen durchlauf: (%i,%i);\n",i,j);
-				if ((porta_list[i]->sys+j)->den.p ==0x1){
+				if (!MP_realised){
+//				if ((porta_list[i]->sys+j) -> den.p == 0x1){
 					//printf("if = True");
 					((result + i * (dim+1)+j))->num = (porta_list[i]->sys+j)->num;
 					((result + i * (dim+1)+j))->den.i = (porta_list[i]->sys+j)->den.i;
-				}else {
+				} else {
 					//printf("if = False");
 					RAT * x = (porta_list[i]->sys+j);
 					if (!x->num){
-						((result + i * (dim+1)+j))->den.i = 1;
-						((result + i * (dim+1)+j))->num = 0;
+						((result + i * (dim+1)+j))->den.i = x->num;//1;
+						((result + i * (dim+1)+j))->num = x->den.i;//0;
 					} else {
 						((result + i * (dim+1)+j))->den.i = x->den.p[1];
-						((result + i * (dim+1)+j))->num = x->den.p[0]*((x->num<0)?-1:1);
+						((result + i * (dim+1)+j))->num = x->den.p[0]*((x->num<0)?-1:1);					 
 					}
 				}
 				

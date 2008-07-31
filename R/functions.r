@@ -26,6 +26,7 @@ failureRegions <- function(experiments,parameterspace,fail) {
 }
 
 as.poi <- function(v) {
+	if (class(v)=="poi") return(v)
 	if (is.null(dim(v))) {
 		nrow=1
 		ncol=length(v)
@@ -41,6 +42,27 @@ as.poi <- function(v) {
 	}	
 	return(new("poi",num=matrix(temp[[1]],nrow=nrow,ncol=ncol),den=matrix(temp[[2]],nrow=nrow,ncol=ncol)))		
 }
+
+as.ieq <- function(v,sign=NULL) {
+	if (class(v)=="ieq") return(v)
+	v<-as.poi(v)
+	if (dim(v@num)[2]==1) stop("More values are needed")
+	if (is.null(sign)) sign=sign=rep(1,dim(v@num)[1])
+	return(new("ieq",num=v@num,den=v@den,sign=sign))		
+}
+
+as.ieqFile <- function(v,sign=NULL) {
+	if (class(v)=="ieqFile") return(v)
+	v<-as.ieq(v,sign)
+	return(new("ieqFile",inequalities=v))		
+}
+
+as.poiFile <- function(v,hull=TRUE) {
+	if (class(v)=="poiFile") return(v)
+	v<-as.poi(v)
+	if (hull) return(new("poiFile",convex_hull=v)) else return(new("poiFile",convex_cone=v))				
+}
+
 
 read.portaFile <- function(file) {
 		if (file.exists(file)) {

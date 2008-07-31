@@ -5,7 +5,7 @@
  * 
  * This file is a modification of the original file distributed with
  * PORTA (http://www.zib.de/Optimization/Software/Porta/).
- * Last modification: $Date: 2008/05/09 14:24:14 $
+ * Last modification: $Date: 2008/08/06 11:46:40 $
  */
 
 /*******************************************************************************
@@ -1466,6 +1466,7 @@ void write_ieq_file( char *fname, FILE *fp, int equa, int feq, int eqrl,
     start=1;
     if (ineq) {//_________________________________________________________________________INEQUALITIES    
     // writesys(fp,fie,fie+ineq,ierl,0,ieindx,'<',&start);    
+
     /* //writesys(fp,feq,feq+equa,eqrl,0,eqindx,'=',&start);
     	 if (!MP_realised) 
     		{
@@ -1498,6 +1499,7 @@ void write_ieq_file( char *fname, FILE *fp, int equa, int feq, int eqrl,
 	    		}
 	   	    }
 	    } else {
+	    // writesys(fp,fie,fie+ineq,ierl,0,ieindx,'<',&start);    
 	    	for (i = 0; i < ierl; i++){
 	    		for (j = 0; j < ineq; j++){    		
 	    			INTEGER(INEQUALITIES_NUM)[i*ineq+j] = (porta_list[fie+j]->sys+i)->num;
@@ -1576,31 +1578,33 @@ void write_poi_file( char *fname, FILE *fp, int dim, int lr, int flr,
 	   
 
    int i, j, start = 1 ;
-
+        
    if (cone > 0 || lr > 0)  
    {
-       if (lr > 0) 
+       
+       if (lr > 0)
        {   
            /* CONE(xi,-xi,....) */
+			// writesys(fp,flr,flr+lr,dim,1,0,' ',&start);
     	 	for (i = 0; i < dim; i++){
    	     		for (j = 0; j < lr; j++){
-    	   			INTEGER(CONE_SECTION_NUM)[i*cone+j] = (porta_list[flr+j]->sys+i)->num;
-    				INTEGER(CONE_SECTION_DEN)[i*cone+j] = (porta_list[flr+j]->sys+i)->den.i;    		
+//    	   			INTEGER(CONE_SECTION_NUM)[i*cone+j] = (porta_list[flr+j]->sys+i)->num;
+//    				INTEGER(CONE_SECTION_DEN)[i*cone+j] = (porta_list[flr+j]->sys+i)->den.i;    		
+    	   			INTEGER(CONE_SECTION_NUM)[i*lr+j] = (porta_list[flr+j]->sys+i)->num;
+    				INTEGER(CONE_SECTION_DEN)[i*lr+j] = (porta_list[flr+j]->sys+i)->den.i;    		
     	 		}
    	   		}																		    	//-  -}     		
-    	 	
-    	 	
-    	 	//writesys(fp,flr,flr+lr,dim,1,0,' ',&start);
+    	 	    	 	
     	 	for (i = flr; i < flr+lr; i++)
     	 		for (j = 0; j < dim; j++) 
     	 			(porta_list[i]->sys+j)->num *= -1;
-    	 	//writesys(fp,flr,flr+lr,dim,1,0,' ',&start);
-    	 	  // TODO Ueberpruefen ob das hier nicht falsch im Sinne von inkonsistent zur alten Methode ist, denn wird in der alten Methode nicht zweimal geprintet ???? 
-    	 	    	 
+    	 	//writesys(fp,flr,flr+lr,dim,1,0,' ',&start);   	 	    	 
     	 	for (i = 0; i < dim; i++){
         		for (j = 0; j < lr; j++){
-    	 	    	INTEGER(CONE_SECTION_NUM)[i*cone+j] = (porta_list[flr+j]->sys+i)->num;
-    	 	    	INTEGER(CONE_SECTION_DEN)[i*cone+j] = (porta_list[flr+j]->sys+i)->den.i;    		
+//    	 	    	INTEGER(CONE_SECTION_NUM)[i*cone+j] = (porta_list[flr+j]->sys+i)->num;
+//    	 	    	INTEGER(CONE_SECTION_DEN)[i*cone+j] = (porta_list[flr+j]->sys+i)->den.i;    		
+    	   			INTEGER(CONE_SECTION_NUM)[i*lr+j] = (porta_list[flr+j]->sys+i)->num;
+    				INTEGER(CONE_SECTION_DEN)[i*lr+j] = (porta_list[flr+j]->sys+i)->den.i;    		
     	 		}
     	 	}
     	 	
@@ -1618,13 +1622,14 @@ void write_poi_file( char *fname, FILE *fp, int dim, int lr, int flr,
    }
 
    if (conv > 0) 
-   {
+   {   	
+   	
        start = 1;        
        //writesys(fp,fcv,fcv+conv,dim,1,0,' ',&start);                 		 //umgeschrieben    -{                          
      	for (i = 0; i < dim; i++){
    			for (j = 0; j < conv; j++){		
    				INTEGER(CONV_SECTION_NUM)[i*conv+j] = (porta_list[fcv+j]->sys+i)->num;
-				INTEGER(CONV_SECTION_DEN)[i*conv+j] = (porta_list[fcv+j]->sys+i)->den.i;    		
+				INTEGER(CONV_SECTION_DEN)[i*conv+j] = (porta_list[fcv+j]->sys+i)->den.i;				    		
 	 		}
     	}															                	//-  -}
 
@@ -1822,8 +1827,8 @@ void I_RAT_writeline( FILE *fp, int col, RAT *ptr, int format,
 
 
 
-/*
 
+/*
 
 void writepoionie( FILE *fp, int fineq, int lineq, int points, int poi_ieq )
 { 
@@ -1853,8 +1858,8 @@ void writepoionie( FILE *fp, int fineq, int lineq, int points, int poi_ieq )
 	  case 6 : fprintf(fp,"    %c \\  |",*rowstr++);break;
 	  case 7 : fprintf(fp,"     %c \\ |",*rowstr++);break;
 	  }
-	  /*  fprintf(fp,"\n"); */
-/*	  
+	  fprintf(fp,"\n"); 
+	  
 	  if (j != 3) 
 	  {
 	      for (i = 0; i < points+(points-1)/5+2;i++) fprintf(fp," ");
@@ -1910,12 +1915,12 @@ void writepoionie( FILE *fp, int fineq, int lineq, int points, int poi_ieq )
 #endif
 }
 
-*/
 
 
 
 
-/*
+
+
 
 
 void writemark( FILE *fp, unsigned *ptr, int n, int *sumie )
@@ -1946,9 +1951,9 @@ void writemark( FILE *fp, unsigned *ptr, int n, int *sumie )
     }
     fprintf(fp," :%3d\n",sumpoi);
 }
-*/
 
-/*
+
+
 void oldwrite_ieq_file( char *fname, FILE *fp, int equa, int feq, int eqrl, 
                      int *eqindx, int ineq, int fie, int ierl, int *ieindx )
 {

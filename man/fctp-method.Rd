@@ -34,4 +34,10 @@ returns them.
 \seealso{
   \code{"\linkS4class{ieqFile}"}, \code{"\linkS4class{poiFile}"}
 }
+\examples{
+# A very simple example
+ieqExample<-as.ieqFile(cbind(diag(3),rep(0,3)))
+poiExample<-as.poiFile(rbind(diag(3),rep(-1,3)))
+fctp(ieqExample,poiExample)
+}
 \keyword{methods}

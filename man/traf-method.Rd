@@ -59,6 +59,9 @@ minimal description. (All other vectors are non-redundant.)
 \value{
   Returns an object of class \code{poiFile} or \code{ieqFile} depending on the direction of transformation.
 }
+\references{K. Fukuda and A. Prodon (1996). Double Description Method Revisited. In: \emph{Combinatorics and Computer Science.} Vol. 1120 of Lecture Notes in Computer Science. Springer, London, 91--111.
+}
+
 \author{Robin Nunkesser \email{Robin.Nunkesser@tu-dortmund.de}}
 \seealso{
   \code{"\linkS4class{portaFile}"}, \code{"\linkS4class{poiFile}"}, \code{"\linkS4class{ieqFile}"} 

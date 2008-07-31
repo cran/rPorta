@@ -1,5 +1,6 @@
 \name{poiFile-class}
 \alias{poiFile-class}
+\alias{poiFile}
 \alias{show,poiFile-method}
 \alias{dim,poiFile-method}
 \alias{convertToString,poiFile-method}

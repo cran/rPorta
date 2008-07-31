@@ -5,7 +5,7 @@
  * 
  * This file is a modification of the original file distributed with
  * PORTA (http://www.zib.de/Optimization/Software/Porta/).
- * Last modification: $Date: 2008/05/15 14:33:51 $
+ * Last modification: $Date: 2008/08/06 11:46:39 $
  */
 
 /*******************************************************************************
@@ -338,8 +338,8 @@ void write_poi_file_fctp( int ineqNumber, int ineqOrEq, int dim, int lr, int flr
 			/* CONE(xi,-xi,....) */
     	 	for (i = 0; i < dim; i++){
    	     		for (j = 0; j < lr; j++){
-    	   			INTEGER(CONE_SECTION_NUM)[i*cone+j] = (porta_list[flr+j]->sys+i)->num;
-    				INTEGER(CONE_SECTION_DEN)[i*cone+j] = (porta_list[flr+j]->sys+i)->den.i;    		
+    	   			INTEGER(CONE_SECTION_NUM)[i*lr+j] = (porta_list[flr+j]->sys+i)->num;
+    				INTEGER(CONE_SECTION_DEN)[i*lr+j] = (porta_list[flr+j]->sys+i)->den.i;    		
     	 		}
    	   		}																		    	//-  -}     		
     	 	//writesys(fp,flr,flr+lr,dim,1,0,' ',&start);
@@ -350,8 +350,8 @@ void write_poi_file_fctp( int ineqNumber, int ineqOrEq, int dim, int lr, int flr
     	 	// TODO Ueberpruefen ob das hier nicht falsch im Sinne von inkonsistent zur alten Methode ist, denn wird in der alten Methode nicht zweimal geprintet ???? 
     	 	for (i = 0; i < dim; i++){
         		for (j = 0; j < lr; j++){
-    	 	    	INTEGER(CONE_SECTION_NUM)[i*cone+j] = (porta_list[flr+j]->sys+i)->num;
-    	 	    	INTEGER(CONE_SECTION_DEN)[i*cone+j] = (porta_list[flr+j]->sys+i)->den.i;    		
+    	 	    	INTEGER(CONE_SECTION_NUM)[i*lr+j] = (porta_list[flr+j]->sys+i)->num;
+    	 	    	INTEGER(CONE_SECTION_DEN)[i*lr+j] = (porta_list[flr+j]->sys+i)->den.i;    		
     	 		}
     	 	}
     	 	for (i = flr; i < flr+lr; i++)
@@ -683,7 +683,7 @@ void integ_rekurs( RAT *eqsum, RAT *iesum, int lev, struct listVal * L ) //-----
        // fprintf(fp,"(%3d) ",intnum);         ------------nicht noetig
        
         for (i = 0; i < eqdim; i++) {  
-        	valintLength++;           
+        	valintLength++;  
             //fprintf(fp,"%i ",integ[i]);      ------------nicht noetig      
             einfugen(integ[i],L) ;                               
         }        
@@ -826,8 +826,8 @@ void valid_ints( int eqdimpar, RAT *eqarpar, int neqpar,int eqrlpar,
 		int i,j;	
 		for (i = 0; i < conv; i++){
    			for (j = 0; j < dim; j++){		
-   				INTEGER(CONV_SECTION_NUM)[i*dim+j] = getItem(listValint,(j*dim+i));
-				INTEGER(CONV_SECTION_DEN)[i*dim+j] = 1;    		
+   				INTEGER(CONV_SECTION_NUM)[j*conv+i] = getItem(listValint,(i*dim+j));
+				INTEGER(CONV_SECTION_DEN)[j*conv+i] = 1;    		
 	 		}
     	}	
 	

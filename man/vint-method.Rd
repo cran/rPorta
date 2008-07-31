@@ -32,7 +32,10 @@ Returns the found integral points in a \code{poiFile} object.
   \code{"\linkS4class{ieqFile}"}
 }
 \examples{
-# Apply vint to an ieqFile object
-vint(example.ieq()) 
+# A very simple example
+example<-as.ieqFile(cbind(diag(3),rep(0,3)))
+example@lower_bounds<-c(-1,-1,-1)
+example@upper_bounds<-c(1,1,1)
+vint(example)
 }
 \keyword{methods}

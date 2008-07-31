@@ -1,5 +1,6 @@
 \name{ieqFile-class}
 \alias{ieqFile-class}
+\alias{ieqFile}
 \alias{show,ieqFile-method}
 \alias{convertToString,ieqFile-method}
 \alias{max,ieqFile-method}
@@ -39,6 +40,7 @@ Class \code{"portaFile"}, directly.
 example.ieq
 
 # A second example
-ieqFileExample <- new("ieqFile", inequalities=new("ieq", num=matrix(1:100, ncol=10), den=matrix(rep(c(1,3,5,6),25), ncol=10), sign=rep(c(1,0,-1,0,1),2)))
+ieqFileExample <- new("ieqFile", inequalities=new("ieq", num=matrix(1:100, ncol=10),
+	den=matrix(rep(c(1,3,5,6),25), ncol=10), sign=rep(c(1,0,-1,0,1),2)))
 }
 \keyword{classes}
