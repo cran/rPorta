@@ -29,7 +29,7 @@ The unfeasible regions are determined as follows. Suppose the design space is
 \value{
 \code{failureRegions} returns an object of class \code{parameterrestriction}.  
 }
-\references{N. Henkenjohann, R. G\"{o}bel, M. Kleiner, and J. Kunert (2005). An Adaptive Sequential Procedure for Efficient Optimization of the Sheet Metal Spinning Process. \emph{Quality and Reliability Engineering International.} \bold{21} (5), 439--455.
+\references{N. Henkenjohann, R. G\"obel, M. Kleiner, and J. Kunert (2005). An Adaptive Sequential Procedure for Efficient Optimization of the Sheet Metal Spinning Process. \emph{Quality and Reliability Engineering International.} \bold{21} (5), 439--455.
 }
 
 \author{Robin Nunkesser \email{Robin.Nunkesser@tu-dortmund.de}}
