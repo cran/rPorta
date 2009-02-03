@@ -1,6 +1,6 @@
 Package: rPorta
-Version: 0.1-7
-Date: 2009-01-26
+Version: 0.1-8
+Date: 2009-02-03
 Title: R/PORTA interface
 Author: Robin Nunkesser <Robin.Nunkesser@tu-dortmund.de>, Silke Straatmann, Simone Wenzel
 Maintainer: Robin Nunkesser <Robin.Nunkesser@tu-dortmund.de>
@@ -8,4 +8,4 @@ Depends: R (>= 2.6.0)
 Imports: methods
 Description: An R interface to a modified version of PORTA. For more information on PORTA see http://www.zib.de/Optimization/Software/Porta/.
 License: GPL (>= 2)
-Packaged: Tue Jan 27 15:43:49 2009; hornik
+Packaged: Tue Feb  3 21:12:34 2009; hornik

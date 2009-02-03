@@ -5,7 +5,7 @@
  * 
  * This file is a modification of the original file distributed with
  * PORTA (http://www.zib.de/Optimization/Software/Porta/).
- * Last modification: $Date: 2008/08/06 11:46:39 $
+ * Last modification: $Date: 2009/02/03 16:00:03 $
  */
 
 /*******************************************************************************
@@ -230,7 +230,7 @@ int validmain( int argc, char *argv[] )
                              ar1,ineq,dim+2,0,(char **)fout);
             } else {
                 char fname[100];
-                char command[100];
+//                char command[100];
                 RAT *ar1p;
                 init_construct_fcpt(ineq);
                 sort_eqie_cvce(ar1,ineq,dim+2,&equa,&ineq);

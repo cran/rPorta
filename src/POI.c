@@ -433,7 +433,7 @@ int ** matrixNumEliminated, int ** matrixDenEliminated, int ** oldRowsLeft, int 
 		
 		
 		
-		(noOfFaces[i]) = tempNoOfFaces; // entsprechende sternchen auf linker seite hinzugef gt dar ber auch !!
+		(noOfFaces[i]) = tempNoOfFaces;
 		#ifdef _DEBUG //------------------------------------------------------------------------------------------
 		printf("%i-ter PolyCone: \n",i);
 		printIneq((RAT*)ineqCones[i],dimFail[1],(int)noOfFaces[i]);
@@ -1124,12 +1124,12 @@ SEXP rPortaInterface(SEXP fileName, SEXP options,SEXP fileName2){
 	printf("\nlaenge:%i\n",length);*/
 	 
 	int numberOfOptions=isNull(fileName2)?3:4;
-	const char * porta_Options[numberOfOptions];
+	char * porta_Options[numberOfOptions];
 	
 	char * nothing = "-nothing";
 	
-	porta_Options[2] = CHAR(STRING_ELT(fileName,0));
-	if (numberOfOptions==4) porta_Options[3] = CHAR(STRING_ELT(fileName2,0));
+	porta_Options[2] = (char *)CHAR(STRING_ELT(fileName,0));
+	if (numberOfOptions==4) porta_Options[3] = (char *)CHAR(STRING_ELT(fileName2,0));
 /*	porta_Options[2] = porta_FileName;
 	char convert_option [length+1];
 	convert_option[0] = '-';
@@ -1140,7 +1140,7 @@ SEXP rPortaInterface(SEXP fileName, SEXP options,SEXP fileName2){
 	
 	porta_Options[0] = nothing;
 //	porta_Options[1] = convert_option;
-	porta_Options[1] = CHAR(STRING_ELT(options,0));
+	porta_Options[1] = (char *)CHAR(STRING_ELT(options,0));
 	
 	#ifdef _DEBUG 
 	if (numberOfOptions==4) printf("\n FileName2: \"%s\"\n",porta_Options[3]);

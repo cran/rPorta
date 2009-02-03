@@ -5,7 +5,7 @@
  * 
  * This file is a modification of the original file distributed with
  * PORTA (http://www.zib.de/Optimization/Software/Porta/).
- * Last modification: $Date: 2008/08/06 11:46:40 $
+ * Last modification: $Date: 2009/02/03 16:00:03 $
  */
 
 /*******************************************************************************
@@ -917,9 +917,9 @@ void read_eqie( RAT **ar, int dim, int *equa, int *ineq, int *maxrows, int *line
              *     or it is the beginning of the line. then ...
              */
             if ( (*p == '-') || (*p == '+')  || 
-                ((p == scanned_inline) || 
-                 ((p != scanned_inline) && (*(p-1)=='<' || *(p-1)=='=' || *(p-1)=='>')) 
-                 && ((*p < 58 && *p > 47) || (*p =='x')) )     ) 
+                ( (p == scanned_inline) || 
+                 (((p != scanned_inline) && ((*(p-1)=='<') || (*(p-1)=='=') || (*(p-1)=='>'))) 
+                 && (((*p < 58) && (*p > 47)) || (*p =='x')) )     )) 
             {
                 numberread = 0;
                 if ( *p == '-' || *p == '+')    p++;
