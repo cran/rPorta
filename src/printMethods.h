@@ -58,7 +58,7 @@ void printIneq(RAT * ieq, int noVars, int noIeq){
 char * stringIneq(RAT * ieq, int noVars, int noIeq){
 	int i , j, z;	
 	double z2;
-	char puffer[10];	
+	char puffer[30];	
 	char * c= "";		
 	int column = noVars + 1;	
 	for (i = 0; i < noIeq; i++){
